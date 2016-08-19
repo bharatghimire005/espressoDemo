@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerViewCountry;
     private Activity mActivity;
     private List<String> list;
+   private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mActivity = this;
         mRecyclerViewCountry = (RecyclerView) findViewById(R.id.recyclerview_country);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         countryListModelCall.enqueue(new Callback<CountryListModel>() {
             @Override
             public void onResponse(Call<CountryListModel> call, Response<CountryListModel> response) {
+                mProgressBar.setVisibility(View.GONE);
+                mRecyclerViewCountry.setVisibility(View.VISIBLE);
                 int responseCode = response.code();
                 CountryListModel countryListModel = response.body();
                 list = countryListModel.countryList;
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CountryListModel> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
                 Log.i(TAG, "onResponse: " + t);
             }
         });
