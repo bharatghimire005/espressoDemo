@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="project.com.espressodemo"
+<manifest package="project.com.espressotutorial"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="project.com.espressotutorial.MainActivity"
             android:screenOrientation="portrait"
             >
        <!--     <intent-filter>
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name="project.com.espressotutorial.LoginActivity"
             android:screenOrientation="portrait"
             >
             <intent-filter>

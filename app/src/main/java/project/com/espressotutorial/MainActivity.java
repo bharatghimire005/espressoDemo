@@ -1,4 +1,4 @@
-package project.com.espressodemo;
+package project.com.espressotutorial;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerViewCountry;
     private Activity mActivity;
     private List<String> list;
-   private ProgressBar mProgressBar;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         mActivity = this;
         mRecyclerViewCountry = (RecyclerView) findViewById(R.id.recyclerview_country);
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
+
+       // retrofitApiRequest();
+    }
+
+
+    private void retrofitApiRequest(){
+
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -64,12 +71,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private void setAdapter() {
         LinearLayoutManager manager = new LinearLayoutManager(mActivity);
         mRecyclerViewCountry.setLayoutManager(manager);
         CountryAdapter countryAdapter = new CountryAdapter(list,mActivity);
         mRecyclerViewCountry.setAdapter(countryAdapter);
 
+    }
+
+    private void addCountryList(){
+        list.add("India");
+        list.add("Pakistan");
+        list.add("Bhutan");
+        list.add("Malaysia");
     }
 }

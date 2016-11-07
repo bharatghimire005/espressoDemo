@@ -1,4 +1,4 @@
-package project.com.espressodemo;
+package project.com.espressotutorial;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;

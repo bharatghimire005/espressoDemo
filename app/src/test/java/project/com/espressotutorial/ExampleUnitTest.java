@@ -1,4 +1,4 @@
-package project.com.espressodemo;
+package project.com.espressotutorial;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package project.com.espressodemo;
+package project.com.espressotutorial;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -46,9 +46,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.button_call).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callMainActivity();
+            }
+        });
     }
 
+    private void callMainActivity() {
+        Intent in=new Intent(mActivity,MainActivity.class);
+        in.putExtra("CountryCode","42");
+            startActivity(in);
 
+    }
     /**
      * Validate Login and show proper message on the basis of the error
      *
@@ -56,11 +67,11 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isValid() {
         if (!LoginUtility.isFieldEmpty(mEditTextPassword.getText().toString())) {
-            Toast.makeText(mActivity, "Password field should not be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, R.string.password_incorrect_message, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!LoginUtility.isValidEmail(mEditTextEmail.getText().toString())) {
-            Toast.makeText(mActivity, "Not a valid email id ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, R.string.not_valid_email, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
